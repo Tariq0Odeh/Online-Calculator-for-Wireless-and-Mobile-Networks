@@ -3,11 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bit Rate Calculator</title>
+    <link rel="stylesheet" href="assets/css/transmitter-power-calculator.css">
 </head>
 <body>
-    <h1>This is Page 3</h1>
-    <a href="index.html">Back to Main Page</a>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Transmitter Power Calculator</h1>
+            </div>
+        </nav>
+    </header>
+
+    <form id="calculatorForm">
+        <table>
+            <tr>
+                <td><label for="freqency">Freqency:</label></td>
+                <td><input type="number" id="freqency" name="freqency" step="any" required></td>
+                <td>
+                    <select id="freqUnit" name="freqUnit">
+                        <option value="Hz">Hz</option>
+                        <option value="KHz">KHz</option>
+                        <option value="MHz">MHz</option>
+                        <option value="GHz">GHz</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="dataRate">Data Rate:</label></td>
+                <td><input type="number" id="dataRate" name="dataRate" step="any" required></td>
+                <td>
+                    <select id="dataRateUnit" name="dataRateUnit">
+                        <option value="fps">fps</option>
+                        <option value="Kfps">Kfps</option>
+                        <option value="Mfps">Mfps</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pathLoss">Path Loss:</label></td>
+                <td><input type="number" id="pathLoss" name="pathLoss" step="any" required></td>
+                <td>
+                    <select id="pathLossUnit" name="pathLossUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="transmitAntennaGain">Transmit Antenna Gain:</label></td>
+                <td><input type="number" id="transmitAntennaGain" name="transmitAntennaGain" step="any" required></td>
+                <td>
+                    <select id="transmitAntennaGainUnit" name="transmitAntennaGainUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="receiveAntennaGain">Receive Antenna Gain:</label></td>
+                <td><input type="number" id="receiveAntennaGain" name="receiveAntennaGain" step="any" required></td>
+                <td>
+                    <select id="receiveAntennaGainUnit" name="receiveAntennaGainUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="antennaFeedLineLoss">Antenna Feed Line Loss:</label></td>
+                <td><input type="number" id="antennaFeedLineLoss" name="antennaFeedLineLoss" step="any" required></td>
+                <td>
+                    <select id="antennaFeedLineLossUnit" name="antennaFeedLineLossUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="otherLosses">Other Losses:</label></td>
+                <td><input type="number" id="otherLosses" name="otherLosses" step="any" required></td>
+                <td>
+                    <select id="otherLossesUnit" name="otherLossesUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="fadeMargin">Fade Margin:</label></td>
+                <td><input type="number" id="fadeMargin" name="fadeMargin" step="any" required></td>
+                <td>
+                    <select id="fadeMarginUnit" name="fadeMarginUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="receiverAmplifierGain">Receiver Amplifier Gain:</label></td>
+                <td><input type="number" id="receiverAmplifierGain" name="receiverAmplifierGain" step="any" required></td>
+                <td>
+                    <select id="receiverAmplifierGainUnit" name="receiverAmplifierGainUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="noiseFigureTotal">Noise Figure Total:</label></td>
+                <td><input type="number" id="noiseFigureTotal" name="noiseFigureTotal" step="any" required></td>
+                <td>
+                    <select id="noiseFigureTotalUnit" name="noiseFigureTotalUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="linkMargin">Link Margin:</label></td>
+                <td><input type="number" id="linkMargin" name="linkMargin" step="any" required></td>
+                <td>
+                    <select id="linkMarginUnit" name="linkMarginUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="noiseTemperature">Noise Temperature:</label></td>
+                <td><input type="number" id="noiseTemperature" name="noiseTemperature" step="any" required></td>
+            </tr>
+            <tr>
+                <td><label for="dropdown">Modulated Signal:</label></td>
+                <td>
+                    <select id="dropdown" name="dropdown">
+                        <option value="8-PSK">8-PSK</option>
+                        <option value="other">other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="bitErrorRate">Bit Error Rate:</label></td>
+                <td><input type="number" id="bitErrorRate" name="bitErrorRate" step="any" required></td>
+            </tr>
+        </table>
+        
+        
+    <div colspan="3" style="text-align: center;">
+            <input type="submit" value="Calculate" class="btn">
+    </div>
+
+    </form>
+
+    <div id="results">
+        <table>
+          
+
+
+        </table>
+    </div>
+
+    <div id="main">
+        <a href="index.html" class="btn">Back to Main Page</a>
+    </div>
+
+    <script src="assets/js/transmitter-power-calculator.js"></script>
 </body>
 </html>

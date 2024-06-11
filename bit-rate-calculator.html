@@ -21,14 +21,12 @@
                 <td><label for="bandwidth">Bandwidth:</label></td>
                 <td><input type="number" id="bandwidth" name="bandwidth" step="any" required></td>
                 <td>
-                    <input type="radio" id="GHz" name="freqUnit" value="GHz">
-                    <label for="GHz">GHz</label>
-                    <input type="radio" id="MHz" name="freqUnit" value="MHz">
-                    <label for="MHz">MHz</label>
-                    <input type="radio" id="KHz" name="freqUnit" value="KHz">
-                    <label for="KHz">KHz</label>
-                    <input type="radio" id="Hz" name="freqUnit" value="Hz">
-                    <label for="Hz">Hz</label>
+                    <select id="freqUnit" name="freqUnit">
+                        <option value="Hz">Hz</option>
+                        <option value="KHz">KHz</option>
+                        <option value="MHz">MHz</option>
+                        <option value="GHz">GHz</option>
+                    </select>
                 </td>
             </tr>
             <tr>

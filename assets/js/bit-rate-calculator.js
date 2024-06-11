@@ -7,14 +7,8 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     var compressionRate = parseFloat(document.getElementById("compressionRate").value);
     var channelEncoderRate = parseFloat(document.getElementById("channelEncoderRate").value);
     var interleaver = parseFloat(document.getElementById("interleaver").value);
-    var freqUnit = document.querySelector('input[name="freqUnit"]:checked');
+    var freqUnit = document.getElementById('freqUnit');
     var BitRateUnit;
-
-    // Validate input values
-    if (!freqUnit) {
-        alert("Please select a frequency unit");
-        return;
-    }
 
     if (bandwidth <= 0 || quantizer <= 0 || compressionRate <= 0 || channelEncoderRate <= 0 || interleaver <= 0) {
         alert("All input values must be positive.");
@@ -45,9 +39,9 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     // Update the results in the HTML
     document.getElementById("samplingFrequency").textContent = samplingFrequency + " " + freqUnit.value + " samples/sec";
     document.getElementById("quantizationLevels").textContent = quantizationLevels + " levels";
-    document.getElementById("sourceEncoderBitRate").textContent = sourceEncoderBitRate.toFixed(2) + BitRateUnit;
-    document.getElementById("channelEncoderBitRate").textContent = channelEncoderBitRate.toFixed(2) + BitRateUnit;
-    document.getElementById("interleaverBitRate").textContent = interleaverBitRate.toFixed(2) + BitRateUnit;
+    document.getElementById("sourceEncoderBitRate").textContent = sourceEncoderBitRate / 1e3 + " Kbps";
+    document.getElementById("channelEncoderBitRate").textContent = channelEncoderBitRate / 1e3 + " Kbps";
+    document.getElementById("interleaverBitRate").textContent = interleaverBitRate / 1e3 + " Kbps";
 });
 
 // Function to check if a number is a power of two

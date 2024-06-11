@@ -21,52 +21,46 @@
                 <td><label for="bandwidth">Bandwidth:</label></td>
                 <td><input type="number" id="bandwidth" name="bandwidth" step="any" required></td>
                 <td>
-                    <input type="radio" id="GHz" name="freqUnit" value="GHz">
-                    <label for="GHz">GHz</label>
-                    <input type="radio" id="MHz" name="freqUnit" value="MHz">
-                    <label for="MHz">MHz</label>
-                    <input type="radio" id="KHz" name="freqUnit" value="KHz">
-                    <label for="KHz">KHz</label>
-                    <input type="radio" id="Hz" name="freqUnit" value="Hz">
-                    <label for="Hz">Hz</label>
+                    <select id="freqUnit" name="freqUnit">
+                        <option value="Hz">Hz</option>
+                        <option value="KHz">KHz</option>
+                        <option value="MHz">MHz</option>
+                        <option value="GHz">GHz</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td><label for="propagationTime">Propagation Time:</label></td>
                 <td><input type="number" id="propagationTime" name="propagationTime" step="any" required></td>
                 <td>
-                    <input type="radio" id="sec" name="timeUnit" value="sec">
-                    <label for="sec">sec</label>
-                    <input type="radio" id="msec" name="timeUnit" value="msec">
-                    <label for="msec">msec</label>
-                    <input type="radio" id="μsec" name="timeUnit" value="μsec">
-                    <label for="μsec">μsec</label>
-                    <input type="radio" id="nsec" name="timeUnit" value="nsec">
-                    <label for="nsec">nsec</label>
+                    <select id="timeUnit" name="timeUnit">
+                        <option value="sec">sec</option>
+                        <option value="msec">msec</option>
+                        <option value="μsec">μsec</option>
+                        <option value="nsec">nsec</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td><label for="frameSize">Frame Size:</label></td>
                 <td><input type="number" id="frameSize" name="frameSize" step="any" required></td>
                 <td>
-                    <input type="radio" id="Mbit" name="frameSizeUnit" value="Mbit">
-                    <label for="Mbit">Mbit</label>
-                    <input type="radio" id="Kbit" name="frameSizeUnit" value="Kbit">
-                    <label for="Kbit">Kbit</label>
-                    <input type="radio" id="bit" name="frameSizeUnit" value="bit">
-                    <label for="bit">bit</label>
+                    <select id="frameSizeUnit" name="frameSizeUnit">
+                        <option value="bit">bit</option>
+                        <option value="Kbit">Kbit</option>
+                        <option value="Mbit">Mbit</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td><label for="framerate">Frame Rate:</label></td>
-                <td><input type="number" id="framerate" name="framerate" step="any" required></td>
+                <td><label for="frameRate">Frame Rate:</label></td>
+                <td><input type="number" id="frameRate" name="frameRate" step="any" required></td>
                 <td>
-                    <input type="radio" id="Kfps" name="frameRateUnit" value="Mfps">
-                    <label for="Mfps">Mfps</label>
-                    <input type="radio" id="Kfps" name="frameRateUnit" value="Kfps">
-                    <label for="Kfps">Kfps</label>
-                    <input type="radio" id="fps" name="frameRateUnit" value="fps">
-                    <label for="fps">fps</label>
+                    <select id="frameRateUnit" name="frameRateUnit">
+                        <option value="fps">fps</option>
+                        <option value="Kfps">Kfps</option>
+                        <option value="Mfps">Mfps</option>
+                    </select>
                 </td>
             </tr>
             <tr>

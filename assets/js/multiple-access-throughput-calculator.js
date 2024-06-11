@@ -5,19 +5,12 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     var bandwidth = parseFloat(document.getElementById("bandwidth").value);
     var propagationTime = parseFloat(document.getElementById("propagationTime").value);
     var frameSize = parseFloat(document.getElementById("frameSize").value);
-    var frameRate = parseFloat(document.getElementById("framerate").value);
+    var frameRate = parseFloat(document.getElementById("frameRate").value);
     var MACLayerAccessMethod = document.getElementById("dropdown").value;
-
-    var freqUnit = document.querySelector('input[name="freqUnit"]:checked');
-    var timeUnit = document.querySelector('input[name="timeUnit"]:checked');
-    var frameSizeUnit = document.querySelector('input[name="frameSizeUnit"]:checked');
-    var frameRateUnit = document.querySelector('input[name="frameRateUnit"]:checked');
-
-    // Validate input values
-    if (!freqUnit || !timeUnit || !frameSizeUnit || !frameRateUnit) {
-        alert("Please select all units for bandwidth, propagation time, frame size, and frame rate.");
-        return;
-    }
+    var freqUnit = document.getElementById('freqUnit');
+    var timeUnit = document.getElementById('timeUnit');
+    var frameSizeUnit = document.getElementById('frameSizeUnit');
+    var frameRateUnit = document.getElementById('frameRateUnit');
 
     if (bandwidth <= 0 || propagationTime <= 0 || frameSize <= 0 || frameRate <= 0) {
         alert("All input values must be positive.");
