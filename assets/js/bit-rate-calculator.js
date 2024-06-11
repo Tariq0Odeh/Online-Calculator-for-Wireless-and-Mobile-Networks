@@ -12,7 +12,7 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
 
     // Validate input values
     if (!freqUnit) {
-        alert("Please select a frequency unit (KHz or Hz).");
+        alert("Please select a frequency unit");
         return;
     }
 
@@ -31,12 +31,10 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
         return;
     }
 
-    // Convert sampling frequency to Hz if it's in KHz
-    if (freqUnit.value === 'KHz') {
-        BitRateUnit = " Kbps";
-    } else {
-        BitRateUnit = " bps"; 
-    }
+    if (freqUnit.value === 'GHz') bandwidth *= 1e9;
+    if (freqUnit.value === 'MHz') bandwidth *= 1e6;
+    if (freqUnit.value === 'KHz') bandwidth *= 1e3;
+    
 
     var samplingFrequency = bandwidth * 2;
     var quantizationLevels = 2 ** quantizer;

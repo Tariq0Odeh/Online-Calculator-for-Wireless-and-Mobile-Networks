@@ -3,11 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bit Rate Calculator</title>
+    <link rel="stylesheet" href="assets/css/multiple-access-throughput-calculator.css">
 </head>
 <body>
-    <h1>This is Page 4</h1>
-    <a href="index.html">Back to Main Page</a>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Multiple Access Throughput Calculator</h1>
+            </div>
+        </nav>
+    </header>
+
+    <form id="calculatorForm">
+        <table>
+            <tr>
+                <td><label for="bandwidth">Bandwidth:</label></td>
+                <td><input type="number" id="bandwidth" name="bandwidth" step="any" required></td>
+                <td>
+                    <input type="radio" id="GHz" name="freqUnit" value="GHz">
+                    <label for="GHz">GHz</label>
+                    <input type="radio" id="MHz" name="freqUnit" value="MHz">
+                    <label for="MHz">MHz</label>
+                    <input type="radio" id="KHz" name="freqUnit" value="KHz">
+                    <label for="KHz">KHz</label>
+                    <input type="radio" id="Hz" name="freqUnit" value="Hz">
+                    <label for="Hz">Hz</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="propagationTime">Propagation Time:</label></td>
+                <td><input type="number" id="propagationTime" name="propagationTime" step="any" required></td>
+                <td>
+                    <input type="radio" id="sec" name="timeUnit" value="sec">
+                    <label for="sec">sec</label>
+                    <input type="radio" id="msec" name="timeUnit" value="msec">
+                    <label for="msec">msec</label>
+                    <input type="radio" id="μsec" name="timeUnit" value="μsec">
+                    <label for="μsec">μsec</label>
+                    <input type="radio" id="nsec" name="timeUnit" value="nsec">
+                    <label for="nsec">nsec</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="frameSize">Frame Size:</label></td>
+                <td><input type="number" id="frameSize" name="frameSize" step="any" required></td>
+                <td>
+                    <input type="radio" id="Mbit" name="frameSizeUnit" value="Mbit">
+                    <label for="Mbit">Mbit</label>
+                    <input type="radio" id="Kbit" name="frameSizeUnit" value="Kbit">
+                    <label for="Kbit">Kbit</label>
+                    <input type="radio" id="bit" name="frameSizeUnit" value="bit">
+                    <label for="bit">bit</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="framerate">Frame Rate:</label></td>
+                <td><input type="number" id="framerate" name="framerate" step="any" required></td>
+                <td>
+                    <input type="radio" id="Kfps" name="frameRateUnit" value="Mfps">
+                    <label for="Mfps">Mfps</label>
+                    <input type="radio" id="Kfps" name="frameRateUnit" value="Kfps">
+                    <label for="Kfps">Kfps</label>
+                    <input type="radio" id="fps" name="frameRateUnit" value="fps">
+                    <label for="fps">fps</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="dropdown">MAC Layer Access Method:</label></td>
+                <td>
+                    <select id="dropdown" name="dropdown">
+                        <option value="unslotted_nonpersistent_CSMA">unslotted nonpersistent CSMA</option>
+                        <option value="slotted_nonpersistent_CSMA">slotted nonpersistent CSMA</option>
+                        <option value="unslotted_1persistent_CSMA">unslotted 1-persistent CSMA</option>
+                        <option value="slotted_1persistent_CSMA">slotted 1-persistent CSMA</option>
+                        <option value="pure_ALOHA">pure ALOHA</option>
+                        <option value="slotted_ALOHA">slotted ALOHA</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+        
+    <div colspan="3" style="text-align: center;">
+            <input type="submit" value="Calculate" class="btn">
+    </div>
+
+    </form>
+
+    <div id="results">
+        <table>
+            <tr>
+                <td>Frame Time:</td>
+                <td><span id="frameTime"></span></td>
+            </tr>
+            <tr>
+                <td>G:</td>
+                <td><span id="G"></span></td>
+            </tr>
+            <tr>
+                <td>α:</td>
+                <td><span id="α"></span></td>
+            </tr>
+            <tr>
+                <td>Throughput:</td>
+                <td><span id="throughput"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="main">
+        <a href="index.html" class="btn">Back to Main Page</a>
+    </div>
+
+    <script src="assets/js/multiple-access-throughput-calculator.js"></script>
 </body>
 </html>
