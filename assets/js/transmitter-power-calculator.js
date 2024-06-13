@@ -31,6 +31,13 @@ document.getElementById('calculatorForm').addEventListener('submit', function(ev
     const Boltzmanns = 1.38 * 1e-23;
 
 
+    if (frequency < 0 ||dataRate < 0 || pathLoss < 0 || transmitAntennaGain < 0 ||
+        receiveAntennaGain < 0 || transmitAmplifierGain < 0 || antennaFeedLineLoss < 0 || otherLosses < 0 || fadeMargin < 0 ||
+        receiverAmplifierGain < 0 || noiseFigureTotal < 0 || linkMargin < 0 || noiseTemperature < 0 || bitErrorRate < 0) {
+            alert("All input values must be non-negative.");
+            return;
+    }
+    
     const convertToHz = (value, unit) => {
         switch(unit) {
             case 'KHz': return value * 1e3;

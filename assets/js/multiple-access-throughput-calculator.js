@@ -33,14 +33,10 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     if (frameRateUnit.value === 'Kfps') frameRate *= 1e3;
 
     // Calculate throughput based on MAC Layer Access Method
-    var frameTime;
-    var G;
-    var alpha;
-    var throughput;
-
-    frameTime = frameSize / bandwidth;
-    G = frameRate * frameTime;
-    alpha = propagationTime / frameTime;
+    var frameTime =frameSize / bandwidth;
+    var G = frameRate * frameTime;
+    var alpha = propagationTime / frameTime;
+    var throughput = 0;
 
     switch (MACLayerAccessMethod) {
         case 'unslotted_nonpersistent_CSMA':

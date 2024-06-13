@@ -8,7 +8,6 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     var channelEncoderRate = parseFloat(document.getElementById("channelEncoderRate").value);
     var interleaver = parseFloat(document.getElementById("interleaver").value);
     var freqUnit = document.getElementById('freqUnit');
-    var BitRateUnit;
 
     if (bandwidth <= 0 || quantizer <= 0 || compressionRate <= 0 || channelEncoderRate <= 0 || interleaver <= 0) {
         alert("All input values must be positive.");
@@ -37,7 +36,7 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     var interleaverBitRate = channelEncoderBitRate;
 
     // Update the results in the HTML
-    document.getElementById("samplingFrequency").textContent = samplingFrequency + " " + freqUnit.value + " samples/sec";
+    document.getElementById("samplingFrequency").textContent = samplingFrequency / 1e3 +  " K samples/sec";
     document.getElementById("quantizationLevels").textContent = quantizationLevels + " levels";
     document.getElementById("sourceEncoderBitRate").textContent = sourceEncoderBitRate / 1e3 + " Kbps";
     document.getElementById("channelEncoderBitRate").textContent = channelEncoderBitRate / 1e3 + " Kbps";

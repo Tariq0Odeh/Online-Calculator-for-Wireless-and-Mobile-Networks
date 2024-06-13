@@ -8,11 +8,9 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <h1>Bit Rate Calculator</h1>
-            </div>
-        </nav>
+        <div class="logo">
+            <h1>Bit Rate Calculator</h1>
+        </div>
     </header>
 
     <form id="calculatorForm">
@@ -46,38 +44,38 @@
                 <td><input type="number" id="interleaver" name="interleaver" step="any" required></td>
             </tr>
         </table>
-    <div colspan="3" style="text-align: center;">
+        <div style="text-align: center;">
             <input type="submit" value="Calculate" class="btn">
-    </div>
-
+        </div>
     </form>
 
     <div id="results">
+        <h2>Calculation Results</h2>
         <table>
             <tr>
                 <td>Sampling frequency:</td>
-                <td><span id="samplingFrequency"></span></td>
+                <td><span id="samplingFrequency">0</span></td>
             </tr>
             <tr>
                 <td>Number of quantization levels:</td>
-                <td><span id="quantizationLevels"></span></td>
+                <td><span id="quantizationLevels">0</span></td>
             </tr>
             <tr>
                 <td>Bit rate at the output of the source encoder:</td>
-                <td><span id="sourceEncoderBitRate"></span></td>
+                <td><span id="sourceEncoderBitRate">0</span></td>
             </tr>
             <tr>
                 <td>Bit rate at the output of the channel encoder:</td>
-                <td><span id="channelEncoderBitRate"></span></td>
+                <td><span id="channelEncoderBitRate">0</span></td>
             </tr>
             <tr>
                 <td>Bit rate at the output of the interleaver:</td>
-                <td><span id="interleaverBitRate"></span></td>
+                <td><span id="interleaverBitRate">0</span></td>
             </tr>
         </table>
     </div>
 
-    <div id="main">
+    <div id="main" style="text-align: center;">
         <a href="index.html" class="btn">Back to Main Page</a>
     </div>
 
