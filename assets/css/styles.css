@@ -1,61 +1,80 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  color: #333;
+  overflow-x: hidden;
 }
-
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
+  background-color: #3572EF;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
-
-.logo h1 {
-    margin: 0;
+footer {
+  background-color: #3572EF;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
-
+main {
+  padding: 20px;
+  padding-bottom: 20px; 
+}
 .description {
-    text-align: center;
-    padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.buttons {
-    text-align: center;
-    margin-top: 20px;
+.description p {
+  margin: 0;
+  line-height: 1.6;
+  color: #555;
 }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 5px;
+  box-sizing: border-box;
 }
-
-td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.tileDTU {
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-h3 {
-    font-size: 20px; /* Smaller headline size */
-    margin: 5px 0; /* Adjust margin for better spacing */
+.tileDTU:hover {
+  background-color: #3572EF;
+  color: white;
+  border-color: #3572EF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-button {
-    padding: 15px 30px; /* Larger button size */
-    font-size: 18px; /* Larger button text size */
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    width: 200px; /* Set width of buttons */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+.tileDTU h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
 }
-
-button:hover {
-    background-color: #0056b3;
+.tileDTU span {
+  font-size: 0.9rem;
+  color: #666;
 }
-
-tr:hover {
-    background-color: #f5f5f5;
+.tileDTU:hover span {
+  color: #fff;
+}
+.building-icon {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
 }

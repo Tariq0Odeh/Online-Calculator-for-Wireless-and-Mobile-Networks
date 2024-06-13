@@ -34,9 +34,9 @@
                 <td><input type="number" id="dataRate" name="dataRate" step="any" required></td>
                 <td>
                     <select id="dataRateUnit" name="dataRateUnit">
-                        <option value="fps">fps</option>
-                        <option value="Kfps">Kfps</option>
-                        <option value="Mfps">Mfps</option>
+                        <option value="bps">bps</option>
+                        <option value="Kbps">Kbps</option>
+                        <option value="Mbps">Mbps</option>
                     </select>
                 </td>
             </tr>
@@ -139,6 +139,20 @@
                 </td>
             </tr>
             <tr>
+                <td><label for="transmitAmplifierGain">Transmit Amplifier Gain:</label></td>
+                <td><input type="number" id="transmitAmplifierGain" name="transmitAmplifierGain" step="any" required></td>
+                <td>
+                    <select id="transmitAmplifierGainUnit" name="transmitAmplifierGainUnit">
+                        <option value="dB">dB</option>
+                        <option value="Watt">Watt</option>
+                        <option value="KWatt">KWatt</option>
+                        <option value="MWatt">MWatt</option>
+                        <option value="GWatt">GWatt</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><label for="noiseFigureTotal">Noise Figure Total:</label></td>
                 <td><input type="number" id="noiseFigureTotal" name="noiseFigureTotal" step="any" required></td>
                 <td>
@@ -175,7 +189,9 @@
                 <td>
                     <select id="dropdown" name="dropdown">
                         <option value="8-PSK">8-PSK</option>
-                        <option value="other">other</option>
+                        <option value="16-PSK">16-PSK</option>
+                        <option value="BPSK/QPSK">BPSK/QPSK</option>
+
                     </select>
                 </td>
             </tr>
@@ -186,7 +202,7 @@
         </table>
         
         
-    <div colspan="3" style="text-align: center;">
+        <div colspan="3" style="text-align: center;">
             <input type="submit" value="Calculate" class="btn">
     </div>
 
@@ -194,9 +210,22 @@
 
     <div id="results">
         <table>
-          
-
-
+            <tr>
+                <td>Power Received (dB):</td>
+                <td><span id="powerReceivedDb"></span></td>
+            </tr>
+            <tr>
+                <td>Power Received (Watt):</td>
+                <td><span id="powerReceivedWatt"></span></td>
+            </tr>
+            <tr>
+                <td>Power Transmitted (dB):</td>
+                <td><span id="powerTransmittedDb"></span></td>
+            </tr>
+            <tr>
+                <td>Power Transmitted (Watt):</td>
+                <td><span id="powerTransmittedWatt"></span></td>
+            </tr>
         </table>
     </div>
 
