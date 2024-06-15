@@ -12,8 +12,24 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     var frameSizeUnit = document.getElementById('frameSizeUnit');
     var frameRateUnit = document.getElementById('frameRateUnit');
 
-    if (bandwidth <= 0 || propagationTime <= 0 || frameSize <= 0 || frameRate <= 0) {
-        alert("All input values must be positive.");
+    // Validate inputs
+    if (isNaN(bandwidth) || bandwidth <= 0) {
+        alert("Bandwidth must be a positive number.");
+        return;
+    }
+
+    if (isNaN(propagationTime) || propagationTime < 0) {
+        alert("Propagation time must be a non-negative number.");
+        return;
+    }
+
+    if (isNaN(frameSize) || frameSize <= 0 || !Number.isInteger(frameSize)) {
+        alert("Frame size must be a positive integer.");
+        return;
+    }
+
+    if (isNaN(frameRate) || frameRate <= 0) {
+        alert("Frame rate must be a positive number.");
         return;
     }
 
@@ -66,5 +82,5 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     document.getElementById("frameTime").textContent = frameTime * 1e3 + " msec";
     document.getElementById("G").textContent = G;
     document.getElementById("α").textContent = alpha + " sec";
-    document.getElementById("throughput").textContent = throughput.toFixed(5);
+    document.getElementById("throughput").textContent = throughput.toFixed(5) + " bps";
 });

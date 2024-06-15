@@ -44,12 +44,12 @@ td, th {
 
 label {
     display: inline-block;
-    width: 150px;
+    width: 250px;
     font-weight: bold;
 }
 
 input[type="number"], select {
-    width: calc(100% - 10px);
+    width: calc(100% - 1px);
     padding: 8px;
     margin: 4px 0;
     border: 1px solid #ccc;
