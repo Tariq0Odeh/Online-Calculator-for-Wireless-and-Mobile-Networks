@@ -3,12 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Resource Block Calculator</title>
+    <link rel="stylesheet" href="assets/css/bit-rate-calculator.css">
     <link rel="icon" href="assets/imgs/wirless icon.png" type="image/x-icon">
 </head>
 <body>
-    <h1>This is Page 2</h1>
-    <a href="index.html">Back to Main Page</a>
+    <header>
+        <div class="logo">
+            <h1>Resource Block Calculator</h1>
+        </div>
+    </header>
+
+    <form id="resourceBlockCalculatorForm">
+        <table class="form-table">
+            <tr>
+                <td><label for="nQam">n-QAM (n=?):</label></td>
+                <td><input type="number" id="nQam" name="nQam" step="any" required></td>
+            </tr>
+            <tr>
+                <td><label for="resourceBlockBandwidth">Resource Block Bandwidth:</label></td>
+                <td><input type="number" id="resourceBlockBandwidth" name="resourceBlockBandwidth" step="any" required></td>
+                <td>
+                    <select id="freqUnit" name="freqUnit">
+                        <option value="Hz">Hz</option>
+                        <option value="KHz">KHz</option>
+                        <option value="MHz">MHz</option>
+                        <option value="GHz">GHz</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="subcarrierSpacing">Subcarrier Spacing:</label></td>
+                <td><input type="number" id="subcarrierSpacing" name="subcarrierSpacing" step="any" required></td>
+                <td>
+                    <select id="subcarrierUnit" name="subcarrierUnit">
+                        <option value="Hz">Hz</option>
+                        <option value="KHz">KHz</option>
+                        <option value="MHz">MHz</option>
+                        <option value="GHz">GHz</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="ofdmSymbols"># of OFDM Symbols per Resource Block:</label></td>
+                <td><input type="number" id="ofdmSymbols" name="ofdmSymbols" step="any" required></td>
+            </tr>
+            <tr>
+                <td><label for="resourceBlockDuration">Duration of Each Resource Block:</label></td>
+                <td><input type="number" id="resourceBlockDuration" name="resourceBlockDuration" step="any" required></td>
+                <td>
+                    <select id="timeUnit" name="timeUnit">
+                        <option value="nsec">nsec</option>
+                        <option value="μsec">μsec</option>
+                        <option value="msec">msec</option>
+                        <option value="sec">sec</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="parallelResourceBlocks"># of Parallel Resource Blocks:</label></td>
+                <td><input type="number" id="parallelResourceBlocks" name="parallelResourceBlocks" step="any" required></td>
+            </tr>
+        </table>
+        <div style="text-align: center;">
+            <input type="submit" value="Calculate" class="btn">
+        </div>
+    </form>
+
+    <div id="results">
+        <h2>Calculation Results</h2>
+        <table>
+            <tr>
+                <td>Bits per Resource Element:</td>
+                <td><span id="bitsPerResourceElement">0</span></td>
+            </tr>
+            <tr>
+                <td>Resource Elements per OFDM Symbol:</td>
+                <td><span id="resourceElementsPerOFDM">0</span></td>
+            </tr>
+            <tr>
+                <td>Bits per OFDM Symbol:</td>
+                <td><span id="bitsPerOFDM">0</span></td>
+            </tr>
+            <tr>
+                <td>Bits per Resource Block:</td>
+                <td><span id="bitsPerResourceBlock">0</span></td>
+            </tr>
+            <tr>
+                <td>Max Transmission Rate using Parallel Resource Blocks:</td>
+                <td><span id="maxTransmissionRate">0</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="main" style="text-align: center;">
+        <a href="index.html" class="btn">Back to Main Page</a>
+    </div>
+
+    <script src="assets/js/wireless-resource-calculator.js"></script>
 </body>
 </html>
