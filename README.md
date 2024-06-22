@@ -47,17 +47,6 @@ The application will be built using HTML, CSS, and JavaScript, ensuring a respon
   ### Screen4
   ![Screen4](Photos/Screen4.png)
 
-  ### Screen5
-  ![Screen5](Photos/Screen5.png)
-
-  ### Screen6
-  ![Screen6](Photos/Screen6.png)
-
-  ### Screen7
-  ![Screen7](Photos/Screen7.png)
-
-  ### Screen8
-  ![Screen8](Photos/Screen8.png)
 </details>
 
 ## How to Run
