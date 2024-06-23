@@ -1,4 +1,4 @@
-document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+document.getElementById('calculatorForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Fetch the JSON data
@@ -49,65 +49,58 @@ document.getElementById('calculatorForm').addEventListener('submit', function(ev
             const Boltzmanns = 1.38 * 1e-23;
 
             // Validation
-            if (frequency < 0 || dataRate < 0 || pathLoss < 0 || transmitAntennaGain < 0 ||
-                receiveAntennaGain < 0 || transmitAmplifierGain < 0 || antennaFeedLineLoss < 0 || otherLosses < 0 || fadeMargin < 0 ||
-                receiverAmplifierGain < 0 || noiseFigureTotal < 0 || linkMargin < 0 || noiseTemperature < 0 || bitErrorRate < 0) {
-                alert("All input values must be non-negative.");
+            if (frequency < 0 || dataRate < 0 || fadeMargin < 0 || noiseTemperature < 0 || bitErrorRate < 0) {
+                alert("Frequency, data rate, fade margin, noise temperature, and bit error rate must be non-negative.");
                 return;
             }
 
             // Adjust inputs based on units
-            const convertToHz = (value, unit) => {
+            const convertToDb = (value, unit) => {
                 switch (unit) {
-                    case 'KHz': return value * 1e3;
-                    case 'MHz': return value * 1e6;
-                    case 'GHz': return value * 1e9;
-                    default: return value;
-                }
-            };
+                    case 'dBm': return value - 30;
 
-            const convertToFps = (value, unit) => {
-                switch (unit) {
-                    case 'Kbps': return value * 1e3;
-                    case 'Mbps': return value * 1e6;
-                    default: return value;
-                }
-            };
+                    case 'Hz': return 10 * Math.log10(value);
+                    case 'KHz': return 10 * Math.log10(value * 1e3);
+                    case 'MHz': return 10 * Math.log10(value * 1e6);
+                    case 'GHz': return 10 * Math.log10(value * 1e9);
 
-            const convertWattToDb = (value, unit) => {
-                switch (unit) {
+                    case 'bps': return 10 * Math.log10(value);
+                    case 'Kbps': return 10 * Math.log10(value * 1e3);
+                    case 'Mbps': return 10 * Math.log10(value * 1e6);
+
                     case 'Watt': return 10 * Math.log10(value);
                     case 'KWatt': return 10 * Math.log10(value * 1e3);
                     case 'MWatt': return 10 * Math.log10(value * 1e6);
                     case 'GWatt': return 10 * Math.log10(value * 1e9);
+
+                    case 'T': return 10 * Math.log10(value);
+
                     default: return value;
                 }
             };
+
 
             const convertDbToWatt = (valueInDb) => {
                 return Math.pow(10, valueInDb / 10);
             };
 
-            const converttoDb = (value) => {
-                return 10 * Math.log10(value);
-            };
-
             // Calculations
-            const frequencyInDb = converttoDb(convertToHz(frequency, freqUnit));
-            const dataRateInDb = converttoDb(convertToFps(dataRate, dataRateUnit));
-            const pathLossInDb = convertWattToDb(pathLoss, pathLossUnit);
-            const transmitAntennaGainInDb = convertWattToDb(transmitAntennaGain, transmitAntennaGainUnit);
-            const receiveAntennaGainInDb = convertWattToDb(receiveAntennaGain, receiveAntennaGainUnit);
-            const antennaFeedLineLossInDb = convertWattToDb(antennaFeedLineLoss, antennaFeedLineLossUnit);
-            const otherLossesInDb = convertWattToDb(otherLosses, otherLossesUnit);
-            const fadeMarginInDb = convertWattToDb(fadeMargin, fadeMarginUnit);
-            const receiverAmplifierGainInDb = convertWattToDb(receiverAmplifierGain, receiverAmplifierGainUnit);
-            const transmitAmplifierGainInDb = convertWattToDb(transmitAmplifierGain, transmitAmplifierGainUnit);
-            const noiseFigureTotalInDb = convertWattToDb(noiseFigureTotal, noiseFigureTotalUnit);
-            const noiseTemperatureInDp = converttoDb(noiseTemperature);
-            const linkMarginInDb = convertWattToDb(linkMargin, linkMarginUnit);
-            const BoltzmannsInDb = convertWattToDb(Boltzmanns, 'Watt');
+            const frequencyInDb = convertToDb(frequency, freqUnit);
+            const dataRateInDb = convertToDb(dataRate, dataRateUnit);
+            const pathLossInDb = convertToDb(pathLoss, pathLossUnit);
+            const transmitAntennaGainInDb = convertToDb(transmitAntennaGain, transmitAntennaGainUnit);
+            const receiveAntennaGainInDb = convertToDb(receiveAntennaGain, receiveAntennaGainUnit);
+            const antennaFeedLineLossInDb = convertToDb(antennaFeedLineLoss, antennaFeedLineLossUnit);
+            const otherLossesInDb = convertToDb(otherLosses, otherLossesUnit);
+            const fadeMarginInDb = convertToDb(fadeMargin, fadeMarginUnit);
+            const receiverAmplifierGainInDb = convertToDb(receiverAmplifierGain, receiverAmplifierGainUnit);
+            const transmitAmplifierGainInDb = convertToDb(transmitAmplifierGain, transmitAmplifierGainUnit);
+            const noiseFigureTotalInDb = convertToDb(noiseFigureTotal, noiseFigureTotalUnit);
+            const noiseTemperatureInDp = convertToDb(noiseTemperature, "T");
+            const linkMarginInDb = convertToDb(linkMargin, linkMarginUnit);
+            const BoltzmannsInDb = convertToDb(Boltzmanns, 'Watt');
             const ebno = findEbNoForBER(bitErrorRate, modulatedSignal, data.EbNos, data);
+
 
             // Calculate power values only if ebno is found
             if (ebno !== null) {
@@ -127,3 +120,4 @@ document.getElementById('calculatorForm').addEventListener('submit', function(ev
             console.error('Error fetching JSON:', error);
         });
 });
+

@@ -82,5 +82,5 @@ document.getElementById("calculatorForm").addEventListener("submit", function(ev
     document.getElementById("frameTime").textContent = frameTime * 1e3 + " msec";
     document.getElementById("G").textContent = G;
     document.getElementById("α").textContent = alpha + " sec";
-    document.getElementById("throughput").textContent = throughput.toFixed(5) + " bps";
+    document.getElementById("throughput").textContent = (throughput * 100).toFixed(5) + " %";
 });
