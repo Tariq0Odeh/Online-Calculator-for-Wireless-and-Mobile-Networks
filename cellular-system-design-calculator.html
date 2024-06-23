@@ -3,12 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Wireless Resource Calculator</title>
+    <link rel="stylesheet" href="assets/css/bit-rate-calculator.css">
     <link rel="icon" href="assets/imgs/wirless icon.png" type="image/x-icon">
 </head>
 <body>
-    <h1>This is Page 5</h1>
-    <a href="index.html">Back to Main Page</a>
+    <header>
+        <div class="logo">
+            <h1>Wireless Resource Calculator</h1>
+        </div>
+    </header>
+
+    <form id="resourceCalculatorForm">
+        <table class="form-table">
+            <tr>
+                <td><label for="timeSlots"># of Time Slots per Carrier:</label></td>
+                <td><input type="number" id="timeSlots" name="timeSlots" required></td>
+            </tr>
+            <tr>
+                <td><label for="regionArea">Region Area:</label></td>
+                <td><input type="number" id="regionArea" name="regionArea" required></td>
+                <td>
+                    <select id="regionAreaUnit" name="regionAreaUnit">
+                        <option value="m2">m²</option>
+                        <option value="km2" selected>km²</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="numUsers"># of Users:</label></td>
+                <td><input type="number" id="numUsers" name="numUsers" required></td>
+                <td>
+                    <select id="numUsersUnit" name="numUsersUnit">
+                        <option value="user">Users</option>
+                        <option value="hundred">Hundred Users</option>
+                        <option value="thousand" selected>Thousand Users</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="avgCalls">Average Calls:</label></td>
+                <td><input type="number" id="avgCalls" name="avgCalls" required></td>
+                <td>
+                    <select id="avgCallsUnit" name="avgCallsUnit">
+                        <option value="hour">Calls/Hour</option>
+                        <option value="day" selected>Calls/Day</option>
+                        <option value="month">Calls/Month</option>
+                        <option value="year">Calls/Year</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="avgCallDuration">Average Call Duration:</label></td>
+                <td><input type="number" id="avgCallDuration" name="avgCallDuration" required></td>
+                <td>
+                    <select id="avgCallDurationUnit" name="avgCallDurationUnit">
+                        <option value="sec">Seconds</option>
+                        <option value="min" selected>Minutes</option>
+                        <option value="hour">Hours</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="timeSlots">Call Drop Probability:</label></td>
+                <td><input type="text" id="callDropProb" name="callDropProb" required></td>
+            </tr>
+            <tr>
+                <td><label for="minSIR">Minimum SIR Needed:</label></td>
+                <td><input type="number" id="minSIR" name="minSIR" required></td>
+                <td>
+                    <select id="minSIRUnit" name="minSIRUnit">
+                        <option value="dB">dB</option>
+                        <option value="dBm">dBm</option>
+                        <option value="noUnit">No Unit</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="powerRef">Power Measured at Reference Distance (P(d0)):</label></td>
+                <td><input type="number" id="powerRef" name="powerRef" required></td>
+                <td>
+                    <select id="powerRefUnit" name="powerRefUnit">
+                        <option value="dB">dB</option>
+                        <option value="dBm">dBm</option>
+                        <option value="watt">Watt</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="refDistance">Reference Distance (d0):</label></td>
+                <td><input type="number" id="refDistance" name="refDistance" required></td>
+                <td>
+                    <select id="refDistanceUnit" name="refDistanceUnit">
+                        <option value="cm">cm</option>
+                        <option value="m" selected>m</option>
+                        <option value="km">km</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="pathLossExponent">Path Loss Exponent:</label></td>
+                <td>
+                    <select id="pathLossExponent" name="pathLossExponent">
+                        <option value="2">2 (Free space)</option>
+                        <option value="3" selected>3 (Urban area cellular)</option>
+                        <option value="4">4 (Dense urban)</option>
+                        <option value="6">6 (Indoor)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="receiverSensitivity">Receiver Sensitivity:</label></td>
+                <td><input type="number" id="receiverSensitivity" name="receiverSensitivity" required></td>
+                <td>
+                    <select id="receiverSensitivityUnit" name="receiverSensitivityUnit">
+                        <option value="dB">dB</option>
+                        <option value="dBm">dBm</option>
+                        <option value="watt">watt</option>
+                        <option value="milliwatt">mwatt</option>
+                        <option value="microwatt" selected>μwatt</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: center;">
+            <input type="submit" value="Calculate" class="btn">
+        </div>
+    </form>
+
+    <div id="results">
+        <h2>Calculation Results</h2>
+        <table class="results-table">
+            <tr>
+                <td>Maximum Distance Between Transmitter and Receiver:</td>
+                <td><span id="maxDistance">0</span></td>
+            </tr>
+            <tr>
+                <td>Maximum Cell Size:</td>
+                <td><span id="maxCellSize">0</span></td>
+            </tr>
+            <tr>
+                <td>Number of Cells in the Service Area:</td>
+                <td><span id="numCells">0</span></td>
+            </tr>
+            <tr>
+                <td>Traffic Load per User in Erlangs:</td>
+                <td><span id="trafficLoadPerUser">0</span></td>
+            </tr>
+            <tr>
+                <td>Traffic Load in the Whole Cellular System in Erlangs:</td>
+                <td><span id="trafficLoadSystem">0</span></td>
+            </tr>
+            <tr>
+                <td>Traffic Load in Each Cell in Erlangs:</td>
+                <td><span id="trafficLoadCell">0</span></td>
+            </tr>
+            <tr>
+                <td>Number of Cells in Each Cluster:</td>
+                <td><span id="numCellsCluster">0</span></td>
+            </tr>
+            <tr>
+                <td>Minimum Number of Channels Needed:</td>
+                <td><span id="minChannels">0</span></td>
+            </tr>
+            <tr>
+                <td>Minimum Number of Carriers Needed Per Cell:</td>
+                <td><span id="minCarriersPerCell">0</span></td>
+            </tr>
+            <tr>
+                <td>Minimum Number of Carriers Needed in the Whole System:</td>
+                <td><span id="minCarriers">0</span></td>
+            </tr>
+            <tr>
+                <td>Minimum Number of Carriers Needed in the Whole System with QoS 0.05:</td>
+                <td><span id="minCarriersWithQoS">0</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="main" style="text-align: center;">
+        <a href="index.html" class="btn">Back to Main Page</a>
+    </div>
+
+    <script src="assets/js/cellular-system-design-calculator.js"></script>
 </body>
 </html>
