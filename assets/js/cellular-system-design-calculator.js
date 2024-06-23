@@ -22,6 +22,45 @@ document.getElementById("resourceCalculatorForm").addEventListener("submit", fun
     var receiverSensitivity = parseFloat(document.getElementById("receiverSensitivity").value);
     var receiverSensitivityUnit = document.getElementById("receiverSensitivityUnit").value;
 
+    // Unit conversions
+    if (regionAreaUnit === 'km2') regionArea *= 1e6; // Convert km² to m²
+    if (numUsersUnit === 'hundred') numUsers *= 1e2;
+    if (numUsersUnit === 'thousand') numUsers *= 1e3;
+
+    if (avgCallsUnit === 'hour') avgCalls *= 24; // Convert to calls per day
+    if (avgCallsUnit === 'month') avgCalls /= 30; // Convert to calls per day
+    if (avgCallsUnit === 'year') avgCalls /= 365; // Convert to calls per day
+
+    if (avgCallDurationUnit === 'sec') avgCallDuration /= 60; // Convert to minutes
+    if (avgCallDurationUnit === 'hour') avgCallDuration *= 60; // Convert to minutes
+
+    if (refDistanceUnit === 'cm') refDistance /= 100; // Convert to meters
+    if (refDistanceUnit === 'km') refDistance *= 1000; // Convert to meters
+
+    // Convert powerRef to Watts if necessary
+    if (powerRefUnit === 'dBm') {
+        powerRef = Math.pow(10, (powerRef - 30) / 10); // Convert dBm to Watts
+    } else if (powerRefUnit === 'dB') {
+        powerRef = Math.pow(10, powerRef / 10); // Convert dB to ratio
+    }
+
+    // Convert receiver sensitivity to Watts if necessary
+    if (receiverSensitivityUnit === 'dBm') {
+        receiverSensitivity = Math.pow(10, (receiverSensitivity - 30) / 10); // Convert dBm to Watts
+    } else if (receiverSensitivityUnit === 'dB') {
+        receiverSensitivity = Math.pow(10, receiverSensitivity / 10); // Convert dB to ratio
+    } else if (receiverSensitivityUnit === 'milliwatt') {
+        receiverSensitivity /= 1e3
+    } else if (receiverSensitivityUnit === 'microwatt') {
+        receiverSensitivity /= 1e6
+    }
+
+    if (minSIRUnit === 'dBm') {
+        minSIR = Math.pow(10, (minSIR - 30) / 10); // Convert dBm to Watts
+    } else if (minSIRUnit === 'dB') {
+        minSIR = Math.pow(10, minSIR / 10); // Convert dB to ratio
+    }
+
     // Validate inputs
     if (isNaN(timeSlots) || timeSlots <= 0 || !Number.isInteger(timeSlots)) {
         alert("Please enter a valid positive integer for the number of time slots per carrier.");
@@ -63,48 +102,9 @@ document.getElementById("resourceCalculatorForm").addEventListener("submit", fun
         alert("Please select a valid path loss exponent.");
         return;
     }
-    if (isNaN(receiverSensitivity)) {
+    if (isNaN(receiverSensitivity) || receiverSensitivity <= 0) {
         alert("Please enter a valid receiver sensitivity.");
         return;
-    }
-
-    // Unit conversions
-    if (regionAreaUnit === 'km2') regionArea *= 1e6; // Convert km² to m²
-    if (numUsersUnit === 'hundred') numUsers *= 1e2;
-    if (numUsersUnit === 'thousand') numUsers *= 1e3;
-
-    if (avgCallsUnit === 'hour') avgCalls *= 24; // Convert to calls per day
-    if (avgCallsUnit === 'month') avgCalls /= 30; // Convert to calls per day
-    if (avgCallsUnit === 'year') avgCalls /= 365; // Convert to calls per day
-
-    if (avgCallDurationUnit === 'sec') avgCallDuration /= 60; // Convert to minutes
-    if (avgCallDurationUnit === 'hour') avgCallDuration *= 60; // Convert to minutes
-
-    if (refDistanceUnit === 'cm') refDistance /= 100; // Convert to meters
-    if (refDistanceUnit === 'km') refDistance *= 1000; // Convert to meters
-
-    // Convert powerRef to Watts if necessary
-    if (powerRefUnit === 'dBm') {
-        powerRef = Math.pow(10, (powerRef - 30) / 10); // Convert dBm to Watts
-    } else if (powerRefUnit === 'dB') {
-        powerRef = Math.pow(10, powerRef / 10); // Convert dB to ratio
-    }
-
-    // Convert receiver sensitivity to Watts if necessary
-    if (receiverSensitivityUnit === 'dBm') {
-        receiverSensitivity = Math.pow(10, (receiverSensitivity - 30) / 10); // Convert dBm to Watts
-    } else if (receiverSensitivityUnit === 'dB') {
-        receiverSensitivity = Math.pow(10, receiverSensitivity / 10); // Convert dB to ratio
-    } else if (receiverSensitivityUnit === 'milliwatt') {
-        receiverSensitivity /= 1e3
-    } else if (receiverSensitivityUnit === 'microwatt') {
-        receiverSensitivity /= 1e6
-    }
-
-    if (minSIRUnit === 'dBm') {
-        minSIR = Math.pow(10, (minSIR - 30) / 10); // Convert dBm to Watts
-    } else if (minSIRUnit === 'dB') {
-        minSIR = Math.pow(10, minSIR / 10); // Convert dB to ratio
     }
 
     // Calculate maximum distance
@@ -114,7 +114,7 @@ document.getElementById("resourceCalculatorForm").addEventListener("submit", fun
     var cellArea = (3 * Math.sqrt(3) * Math.pow(maxDistance, 2)) / 2;
 
     // Calculate number of cells in the service area
-    var numCells = regionArea / cellArea;
+    var numCells = Math.ceil(regionArea / cellArea);
 
     // Calculate traffic load per user
     var trafficLoadPerUser = avgCalls * avgCallDuration / (60 * 24); // Convert to Erlangs
@@ -194,7 +194,7 @@ document.getElementById("resourceCalculatorForm").addEventListener("submit", fun
     // Update results
     document.getElementById("maxDistance").textContent = maxDistance.toFixed(2) + " meters";
     document.getElementById("maxCellSize").textContent = cellArea.toFixed(2) + " m²";
-    document.getElementById("numCells").textContent = Math.ceil(numCells);
+    document.getElementById("numCells").textContent = numCells;
     document.getElementById("trafficLoadPerUser").textContent = trafficLoadPerUser.toFixed(2) + " Erlangs";
     document.getElementById("trafficLoadSystem").textContent = trafficLoadSystem.toFixed(2) + " Erlangs";
     document.getElementById("trafficLoadCell").textContent = trafficLoadCell.toFixed(2) + " Erlangs";
